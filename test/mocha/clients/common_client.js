@@ -5,7 +5,6 @@ const {Authentication} = require('../selectors/BO/authenticationPage');
 const {AuthenticationFO} = require('../selectors/FO/authentication');
 const {HomePage} = require('../selectors/FO/homePage');
 const {Dashboard} = require('../selectors/BO/dashboardPage');
-let fs = require('fs');
 let options = {
   timeout: 30000,
   headless: false,
@@ -87,6 +86,17 @@ class CommonClient {
     await this.waitForAndClick(HomePage.sign_out_button);
   }
 
+
+  async switchShopLanguageInFo(language = 'fr') {
+    await this.waitForAndClick(HomePage.language_selector);
+    await this.waitFor(1000);
+    if (language === 'en') {
+      await this.waitForAndClick(HomePage.language_EN);
+    } else {
+      await this.waitForAndClick(HomePage.language_FR);
+    }
+  }
+
   async screenshot(fileName = 'screenshot') {
     await page.waitForNavigation({waitUntil: 'domcontentloaded'});
     await page.screenshot({path: 'test/mocha/screenshots/' + fileName + global.dateTime + '.png'});
@@ -160,6 +170,22 @@ class CommonClient {
   async accessToFO(selector, id) {
     await this.waitForAndClick(selector, 4000);
     await this.switchWindow(id);
+  }
+
+  async waitFor(timeoutOrSelectorOrFunction, options = {}) {
+    await page.waitFor(timeoutOrSelectorOrFunction, options);
+  }
+
+  async waitForAndType(selector, value, wait = 0, options = {}) {
+    await this.waitFor(wait);
+    await this.waitFor(selector, options);
+    await page.type(selector, value);
+  }
+
+  async alertAccept() {
+    await page.on('dialog',  dialog => {
+       dialog.accept();
+    });
   }
 }
 
