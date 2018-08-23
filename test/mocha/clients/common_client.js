@@ -161,6 +161,16 @@ class CommonClient {
     await this.waitForAndClick(selector, 4000);
     await this.switchWindow(id);
   }
+
+  async checkBrowserMessage(textToCheckWith) {
+    await page.on('error', error => {
+      console.log(error)
+      for (let i = 0; i < msg.args().length; i++) {
+        console.log(`${i}: ${msg.args()[i]}`);
+        expect(msg.args()[i].to.contain(textToCheckWith))
+      }
+    });
+  }
 }
 
 module.exports = CommonClient;
