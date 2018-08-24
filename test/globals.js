@@ -6,6 +6,8 @@ global.firstName = 'Demo';
 global.lastName = 'Prestashop';
 global.email = argv.LOGIN || 'demo@prestashop.com';
 global.password = argv.PASSWD || 'prestashop_demo';
+global.customerEmail = argv.LOGIN || 'pub@prestashop.com';
+global.customerPassword = argv.PASSWD || '123456789'
 
 global.rcTarget = argv.RC_TARGET;
 global.URL = argv.URL;
