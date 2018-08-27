@@ -5,6 +5,7 @@ module.exports = {
     save_button: 'div.dropdown > button[type="submit"]',
     quantity_input: '#form_step1_qty_0_shortcut',
     product_reference: '#form_step6_reference',
+    price_input:'#form_step1_price_ttc_shortcut',
     options_tab: '#tab_step6 > a',
     simple_product_button_radio: '#show_variations_selector > div:nth-child(2) > label input',
     add_customization_button: '#custom_fields > a',
@@ -12,5 +13,6 @@ module.exports = {
     symfony_toolbar: 'a[title="Close Toolbar"]',
     product_online_toggle: '.switch-input ',
     close_validation_button: '.growl-close',
+    validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)'
   }
 };
