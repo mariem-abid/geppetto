@@ -161,6 +161,30 @@ class CommonClient {
     await this.waitForAndClick(selector, 4000);
     await this.switchWindow(id);
   }
+
+  async switchShopLanguageInFo(language = 'fr') {
+    await this.waitForAndClick(HomePage.language_selector);
+    await this.waitFor(1000);
+    if (language === 'en') {
+      await this.waitForAndClick(HomePage.language_EN);
+    } else {
+      await this.waitForAndClick(HomePage.language_FR);
+    }
+  }
+
+  async isExisting(selector) {
+    await page.$(selector, el => el).then((el) => {
+      const exist = el !== null ? true : false;
+      expect(exist).to.be.true;
+    })
+  }
+
+  async isNotExisting(selector) {
+    await page.$(selector, el => el).then((el) => {
+      const exist = el !== null ? true : false;
+      expect(exist).to.be.false;
+    })
+  }
 }
 
 module.exports = CommonClient;
