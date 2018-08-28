@@ -12,5 +12,8 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    customization_message: 'div.modal-dialog div.value',
+    proceed_to_checkout_button:'#main div.checkout.cart-detailed-actions.card-block a'
+
   }
 };

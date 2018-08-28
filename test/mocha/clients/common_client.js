@@ -38,6 +38,10 @@ class CommonClient {
   async close() {
     await browser.close();
   }
+  
+  async closeWindow(){
+    await page.close();
+  }
 
   async stopTracing() {
     await page.tracing.stop();
@@ -189,7 +193,8 @@ class CommonClient {
     expect(currentUrl).to.contain(textToCheckWith);
   }
 
-  async clearInputAndSetValue(selector, text) {
+  async clearInputAndSetValue(selector, text,wait=0) {
+    await this.waitFor(wait);
     await page.click(selector);
     await page.keyboard.down('Control');
     await page.keyboard.down('A');

@@ -5,7 +5,7 @@ module.exports = {
     success_message: '#growls-default div.growl-message',
     save_button: 'button.js-btn-save[type=submit]',
     online_switcher: '.switch-input',
-    symfony_toolbar: 'a[title="Close Toolbar"]',
+    symfony_toolbar: 'div[id *="sfToolbarMainContent"][style="display: block;"] a[class="hide-button"]',
     close_validation_button: '.growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
 
