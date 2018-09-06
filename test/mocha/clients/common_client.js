@@ -169,11 +169,17 @@ class CommonClient {
     }
   }
 
-  async checkAttributeValue(selector, attribute, textToCheckWith, wait = 0) {
-    await page.waitFor(wait);
-    await page.$eval(selector, (el, attribute) => el.getAttribute(attribute), attribute).then((className) => {
-      expect(className).to.be.equal(textToCheckWith);
-    });
+  async checkAttributeValue(selector, attribute, textToCheckWith, parameter = 'equal', wait = 0) {
+    switch (parameter) {
+      case "equal":
+        await this.waitFor(wait);
+        await page.$eval(selector, (el, attribute) => el.getAttribute(attribute), attribute).then((className) =>expect(className).to.be.equal(textToCheckWith));
+        break;
+      case "contain":
+        await this.waitFor(wait);
+        await page.$eval(selector, (el, attribute) => el.getAttribute(attribute), attribute).then((className) =>expect(className).to.contain(textToCheckWith));
+        break;
+    }
   }
 
   async switchShopLanguageInFo(language = 'fr') {
@@ -282,8 +288,8 @@ class CommonClient {
     let special = ['zeroth','first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
     let deca = ['twent', 'thirt', 'fort', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
     if (number < 20) return special[number];
-    if (number%10 === 0) return deca[Math.floor(number/10)-2] + 'ieth';
-    return deca[Math.floor(number/10)-2] + 'y-' + special[number%10];
+    if (number % 10 === 0) return deca[Math.floor(number / 10) - 2] + 'ieth';
+    return deca[Math.floor(number / 10) - 2] + 'y-' + special[number % 10];
   }
 }
 
