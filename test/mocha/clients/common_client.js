@@ -285,6 +285,12 @@ class CommonClient {
     if (number%10 === 0) return deca[Math.floor(number/10)-2] + 'ieth';
     return deca[Math.floor(number/10)-2] + 'y-' + special[number%10];
   }
+
+  async getBoundingBox(selector,wait=0,globalVar){
+    await this.waitFor(wait);
+    const bodyHandle = await page.$(selector);
+    global.tab[globalVar] = await bodyHandle.boundingBox();
+  }
 }
 
 module.exports = CommonClient;
