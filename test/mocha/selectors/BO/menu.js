@@ -44,11 +44,8 @@ module.exports = {
     Improve: {
       Modules: {
         modules_menu: '#subtab-AdminParentModulesSf',
-        modules_services_submenu: '#subtab-AdminModulesSf',
-        installed_modules_tabs: '#subtab-AdminModulesManage',
-        notifications_tabs: '#subtab-AdminModulesNotifications',
-        selection_tab: '#subtab-AdminModulesCatalog',
-        modules_catalog_submenu: '#subtab-AdminAddonsCatalog',
+        module_catalog_submenu:'#subtab-AdminParentModulesCatalog',
+        module_manager_submenu:'#subtab-AdminModulesSf'
       },
       Design: {
         design_menu: '#subtab-AdminParentThemes',
