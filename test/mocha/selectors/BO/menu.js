@@ -29,7 +29,8 @@ module.exports = {
       Customers: {
         customers_menu: '#subtab-AdminParentCustomer',
         customers_submenu: '#subtab-AdminCustomers',
-        addresses_submenu: '#subtab-AdminAddresses'
+        addresses_submenu: '#subtab-AdminAddresses',
+        outstanding_submenu:'#subtab-AdminOutstanding'
       },
       CustomerService: {
         customer_service_menu: '#subtab-AdminParentCustomerThreads',
