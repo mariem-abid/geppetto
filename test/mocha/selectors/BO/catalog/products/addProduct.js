@@ -8,6 +8,10 @@ module.exports = {
     symfony_toolbar: 'a[title="Close Toolbar"]',
     close_validation_button: '.growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
+    preview_button:'#product_form_preview_btn',
+    preview_link: 'body > a',
+    delete_icon:'#product_form_delete_btn > i',
+    confirmation_modal_yes:'#confirmation_modal  button.btn.btn-primary.btn-lg.continue',
 
     Basic_settings: {
       name_input: '#form_step1_name_1',
@@ -28,7 +32,9 @@ module.exports = {
       combination_tr: '#accordion_combinations > tr:nth-child(%POS)',
       edit_combination_icon: '#attribute_%ID > td.attribute-actions a',
       combination_image: '#combination_%ID_id_image_attr > div:nth-child(%POS) > img',
-      combination_image_number: '#combination_form_%ID small.number-of-images'
+      combination_image_number: '#combination_form_%ID small.number-of-images',
+      reference_input:'#combination_%ID_attribute_reference',
+      back_to_product_button:'#combination_form_%ID button'
     },
 
     Quantity: {

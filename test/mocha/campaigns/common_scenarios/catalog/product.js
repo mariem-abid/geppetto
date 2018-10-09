@@ -136,5 +136,16 @@ module.exports = {
         await client.switchWindow(0);
       });
     }, 'common_client');
+  },
+  async backToBoAndDeleteProduct(data) {
+    scenario('Go back to the Back Office and delete the ' +data+ 'product', client => {
+      test('should go back  to the Back Office "', async() => {
+        await client.closeWindow();
+        await client.switchWindow(0);
+      });
+      test('should click on "Delete" icon', () => client.waitForAndClick(AddProduct.delete_icon));
+      test('should confirm the modal', () => client.waitForAndClick(AddProduct.confirmation_modal_yes,1000));
+      test('should verify the appearance of the green validation', () => client.checkTextValue(Catalog.success_message, 'Product successfully deleted.'));
+    }, 'common_client');
   }
 };

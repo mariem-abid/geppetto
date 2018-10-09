@@ -12,5 +12,8 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    product_reference_label:'#product-details label',
+    product_reference_text:'#product-details  span',
+    combination_select:'#group_1'
   }
 };
