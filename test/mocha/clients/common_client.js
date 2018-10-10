@@ -290,6 +290,13 @@ class CommonClient {
   async closeWindow() {
     await page.close();
   }
+
+  async getBoundingBox(selector, wait = 0, globalVar) {
+    await this.waitFor(wait);
+    const bodyHandle = await page.$(selector);
+    global.tab[globalVar] = await bodyHandle.boundingBox();
+    console.log(global.tab[globalVar] );
+  }
 }
 
 module.exports = CommonClient;

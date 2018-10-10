@@ -1,6 +1,9 @@
 const {AccountPage} = require('../../../selectors/FO/accountPage');
 const {ProductPageFO} = require('../../../selectors/FO/productPage');
 const {CheckoutOrderPage} = require('../../../selectors/FO/order/checkoutOrderPage');
+const {Menu} = require('../../../selectors/BO/menu');
+const {OrderPage} = require('../../../selectors/BO/orders/orderPage');
+
 module.exports = {
   async createOrderFO(authentication = "connect") {
     scenario('Create order in the Front Office', client => {
@@ -30,6 +33,26 @@ module.exports = {
         test('should set "the condition to approve"', () => client.waitForAndClick(CheckoutOrderPage.condition_check_box));
         test('should click on order with an obligation to pay button', () => client.waitForAndClick(CheckoutOrderPage.confirmation_order_button, 1000));
       }, 'common_client');
+    }, 'common_client');
+  },
+  async createOrderBo(productData) {
+    scenario('Create order in the Back Office', client => {
+      test('should go to "Orders" page', async() => {
+        await client.waitForAndClick(Menu.Sell.Orders.orders_menu);
+        await client.waitForAndClick(Menu.Sell.Orders.orders_submenu, 1000);
+      });
+      test('should click on "Add new order" button', () => client.waitForAndClick(OrderPage.CreateOrder.new_order_button, 1000));
+      test('should search for a customer', async() => {
+        await client.waitForAndSetValue(OrderPage.CreateOrder.customer_search_input, 'john doe');
+        await client.keyboardPress('Enter');
+      });
+      test('should choose the customer', () => client.waitForAndClick(OrderPage.CreateOrder.choose_customer_button, 1000));
+      test('should search for a product by name', async() => {
+        await client.clearInputAndSetValue(OrderPage.CreateOrder.product_search_input, productData.name + global.dateTime);
+        await client.keyboardPress('Enter');
+      });
+      test('should click on "Add to cart" button', () => client.waitForAndClick(OrderPage.CreateOrder.add_to_cart_button,1000));
+      test('should click on "Create the order"', () => client.waitForAndClick(OrderPage.CreateOrder.create_order_button,1000));
     }, 'common_client');
   }
 };
