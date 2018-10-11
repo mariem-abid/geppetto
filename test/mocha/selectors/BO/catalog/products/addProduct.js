@@ -38,6 +38,7 @@ module.exports = {
     Options: {
       add_customization_button: '#custom_fields > a',
       customization_input: '#form_step6_custom_fields_0_label_1',
+      tags_input: '#form_step6_tags_1-tokenfield'
     }
   }
 };
