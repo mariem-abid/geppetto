@@ -12,5 +12,6 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    next_pagination:'#js-product-list a[rel="next"]'
   }
 };
