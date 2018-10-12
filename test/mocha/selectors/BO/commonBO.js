@@ -7,6 +7,8 @@ module.exports = {
     link_shop: '#header_shop  li:nth-child(%D) > a.link-shop i',
     shopname_button:'#header_shop',
     shopname_option:'#header_shop li:nth-child(%ID) > a:nth-child(1)',
-    symfony_toolbar_close_button: 'div[id*="sfToolbarMainContent"][style="display: block;"] a.hide-button'
+    symfony_toolbar_close_button: 'div[id*="sfToolbarMainContent"][style="display: block;"] a.hide-button',
+    help_icon:'#toolbar-nav i.process-icon-%D',
+    help_message_header:'#help-container > div > header'
   }
 };
