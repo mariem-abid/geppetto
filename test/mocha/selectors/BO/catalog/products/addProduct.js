@@ -8,6 +8,15 @@ module.exports = {
     symfony_toolbar: 'a[title="Close Toolbar"]',
     close_validation_button: '.growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
+    tinymce_buttons: '#mce_%ID',
+    summary_link_data:'#tinymce  a',
+    preview_button:'#product_form_preview_btn',
+    preview_link: 'body > a',
+
+    TinymceLinkButtons: {
+      url_input: '#mce_95-inp',
+      confirm_button: '#mce_101 > button'
+    },
 
     Basic_settings: {
       name_input: '#form_step1_name_1',
