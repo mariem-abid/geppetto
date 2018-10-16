@@ -5,7 +5,7 @@ const {PreferencesPage} = require('../../../selectors/BO/shopParameters/preferen
 module.exports = {
   async enableOrDisableMultistore (isEnabled = false) {
     scenario('Enable or disable multistore', client => {
-      test('should go to "Preferences" page', async () => {
+      test('should go to "Preferences" page', async() => {
         await client.waitForAndClick(Menu.Configure.ShopParameters.shop_parameters_menu);
         await client.waitForAndClick(Menu.Configure.ShopParameters.general_submenu, 2000);
       });
@@ -14,13 +14,22 @@ module.exports = {
       } else {
         test('should click on "Yes" button to disable multistore', () => client.waitForAndClick(PreferencesPage.enable_or_Disable_multistore_toggle_button.replace('%ID', 4)));
       }
-      test('should click on "Save" button', async () => {
+      test('should click on "Save" button', async() => {
         await client.isVisible(CommonBO.symfony_toolbar_close_button, 2000);
         if (global.visible) {
           await client.waitForAndClick(CommonBO.symfony_toolbar_close_button);
         }
         await client.waitForAndClick(PreferencesPage.save_button, 3000);
       });
+    }, 'common_client');
+  },
+  async checkSelectorExistence (selector,data) {
+    scenario('Check that "Increase front office security" and "Enable Multistore" options are '+data, client => {
+      test('should go to "General" page', async() => {
+        await client.waitForAndClick(Menu.Configure.ShopParameters.shop_parameters_menu);
+        await client.waitForAndClick(Menu.Configure.ShopParameters.general_submenu, 1000);
+      });
+      test('should Check that "Increase front office security" and "Enable Multistore" options are '+data, () => client.isExisting(selector, 1000));
     }, 'common_client');
   }
 };
