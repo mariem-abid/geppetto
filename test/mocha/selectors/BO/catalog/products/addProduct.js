@@ -16,7 +16,11 @@ module.exports = {
       reference_input: '#form_step6_reference',
       quantity_input: '#form_step1_qty_0_shortcut',
       price_input: '#form_step1_price_shortcut',
-      files_input: 'input.dz-hidden-input[type="file"]'
+      files_input: 'input.dz-hidden-input[type="file"]',
+      click_image:'#product-images-dropzone div:nth-child(%ID) div.dz-image',
+      save_image_settings_button:'#product-images-form  button.btn-primary',
+      delete_image_button:'#product-images-form  button.btn-link',
+      images_dropzone:'#product-images-dropzone'
     },
 
     Combination: {

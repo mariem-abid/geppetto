@@ -297,6 +297,12 @@ class CommonClient {
     await page.waitForSelector(selector, {timeout: 90000});
     global.selectedValue = await page.select(selector, value);
   }
+
+  async getBoundingBox(selector, wait = 0, globalVar) {
+    await this.waitFor(wait);
+    const bodyHandle = await page.$(selector);
+    global.tab[globalVar] = await bodyHandle.boundingBox();
+  }
 }
 
 module.exports = CommonClient;
