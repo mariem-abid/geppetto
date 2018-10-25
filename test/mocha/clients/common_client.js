@@ -151,6 +151,13 @@ class CommonClient {
     }, selector);
   }
 
+  async checkValidationInput(selector, textToCheckWith) {
+    await this.waitFor(selector);
+    await page.$eval(selector, (el) => el.title).then((title) => {
+      expect(title).to.equal(textToCheckWith);
+    });
+  }
+
   async uploadFile(selector, fileFolder, fileName) {
     const inputFile = await page.$(selector);
     await inputFile.uploadFile(fileFolder + fileName);
