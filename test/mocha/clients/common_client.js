@@ -312,6 +312,16 @@ class CommonClient {
     await this.waitFor(selector);
     await page.$eval(selector + ' > option[selected]', el => el.innerText).then((text) => expect(text).to.equal(textToCheckWith));
   }
+
+  async getTextInVar(selector, globalVar, wait = 0, options = {}, split = false) {
+    await this.waitFor(wait);
+    await this.waitFor(selector, options);
+    if (split === true) {
+      await page.$eval(selector, el => el.innerText).then((text) => global.tab[globalVar] = text.split(" ")[0]);
+    } else {
+      await page.$eval(selector, el => el.innerText).then((text) => global.tab[globalVar] = text);
+    }
+  }
 }
 
 module.exports = CommonClient;
