@@ -7,6 +7,7 @@ module.exports = {
     language_selector: '#_desktop_language_selector button',
     language_EN: '#_desktop_language_selector li:nth-child(1) > a',
     language_FR: '#_desktop_language_selector li:nth-child(2) > a',
+    language_ES: '#_desktop_language_selector  a[data-iso-code="es"]',
     sign_in_button: '#_desktop_user_info span',
     order_history_and_details_button: '#history-link',
     sign_out_button: '#_desktop_user_info  a.logout',
