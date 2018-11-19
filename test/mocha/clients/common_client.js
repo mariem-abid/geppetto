@@ -361,6 +361,18 @@ class CommonClient {
         break;
     }
   }
+
+  async getBoundingBox(selector, globalVar, wait = 0) {
+    await this.waitFor(wait);
+    const bodyHandle = await page.$(selector);
+    global.tab[globalVar] = await bodyHandle.boundingBox();
+  }
+
+  async moveToElement(selector, globalVar, wait = 0) {
+    await this.waitFor(wait);
+    await this.getBoundingBox(selector, globalVar, 1000);
+    await page.mouse.move(global.tab[globalVar].x + global.tab[globalVar].width / 2, global.tab[globalVar].y + global.tab[globalVar].height / 2);
+  }
 }
 
 module.exports = CommonClient;

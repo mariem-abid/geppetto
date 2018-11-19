@@ -12,5 +12,9 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    quickView_button:'a.quick-view',
+    product_link:'#js-product-list div.product-description  a[href*="%NAME"]',
+    product_thumbnail:'#js-product-list div.thumbnail-container a[href*="%NAME"]',
+    dropdown_toggle_button:'#add-to-cart-or-refresh  button.bootstrap-touchspin-down'
   }
 };
