@@ -361,6 +361,11 @@ class CommonClient {
         break;
     }
   }
+
+  async search(selector, data) {
+    await this.waitForAndType(selector, data);
+    await page.keyboard.press('Enter');
+  }
 }
 
 module.exports = CommonClient;
