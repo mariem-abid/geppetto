@@ -51,8 +51,8 @@ module.exports = {
         modules_catalog_submenu: '#subtab-AdminAddonsCatalog',
       },
       Design: {
-        design_menu: '#subtab-AdminParentThemes',
-        theme_logo_submenu: '#subtab-AdminThemesParent',
+        design_menu_link: '#subtab-AdminParentThemes a', //@Todo
+        theme_logo_submenu_link: '#subtab-AdminThemesParent a', //@Todo
         theme_catalog_submenu: '#subtab-AdminThemesCatalog',
         pages_submenu: '#subtab-AdminCmsContent',
         positions_submenu: '#subtab-AdminModulesPositions',
@@ -70,17 +70,16 @@ module.exports = {
         preferences_submenu: '#subtab-AdminPaymentPreferences'
       },
       International: {
-        international_menu: '#subtab-AdminInternational',
-        localization_submenu: '#subtab-AdminParentLocalization',
-        languages_tab: '#subtab-AdminLanguages',
+        international_menu_link: '#subtab-AdminInternational a', //@Todo
+        localization_submenu_link: '#subtab-AdminParentLocalization a', //@Todo
+        localization_languages_tab: '#subtab-AdminLanguages',
         currencies_tab: '#subtab-AdminCurrencies',
         geolocation_tab: '#subtab-AdminGeolocation',
         locations_submenu: '#subtab-AdminParentCountries',
         countries_tab: '#subtab-AdminCountries',
         states_tab: '#subtab-AdminStates',
-        taxes_submenu: '#subtab-AdminParentTaxes',
-        taxe_rules_tab: '#subtab-AdminTaxRulesGroup',
-        translations_submenu: '#subtab-AdminTranslations'
+        taxes_submenu_link: '#subtab-AdminParentTaxes a', //@Todo
+        translations_submenu_link: '#subtab-AdminTranslations a', //@Todo
       }
     },
     Configure: {

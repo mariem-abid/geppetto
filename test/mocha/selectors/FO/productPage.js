@@ -12,5 +12,22 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    product_page: '#product[class*=id]',
+    breadcrumb_nav: '[class*=breadcrumb]',
+    product_section: '#main > div:nth-of-type(1) > div:nth-of-type(%I)',
+    product_name: '#main > div.row > div:nth-child(2) > h1',
+    product_price: '#main > div.row > div:nth-child(2) > div.product-prices > div.product-price.h5 > div > span',
+    product_discount_details: '#main span[class*=discount]',
+    product_size: '#group_1',
+    product_color: '#group_2 > li:nth-child(1) > label > span > span',
+    first_product_quantity: '#quantity_wanted',
+    product_description: '#description',
+    product_detail_tab: '[role=tablist] li:nth-of-type(2)',
+    product_manufacturer: '#product-details div.product-manufacturer > a',
+    product_reference: '#product-details > div.product-reference > span',
+    product_quantity: '#product-details > div.product-quantities > span',
+    category_page: '#category',
+    left_column_block: '#left-column',
+    pagination_block: '#js-product-list > nav'
   }
 };

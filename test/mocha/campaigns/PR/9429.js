@@ -1,6 +1,6 @@
 const authentication = require('../common_scenarios/authentication');
 const {Menu} = require('../../selectors/BO/menu');
-const {AddProduct} = require('../../selectors/BO/catalog/products/addProduct');
+const {AddProductPage} = require('../../selectors/BO/catalog/products/addProduct');
 const {Catalog} = require('../../selectors/BO/catalog/products/catalog');
 const {ProductPageFO} = require('../../selectors/FO/productPage');
 const {CommonBO} = require('../../selectors/BO/commonBO');
@@ -30,15 +30,15 @@ scenario('This scenario is based on the bugs described on this PR: https://githu
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
     });
     test('should click on "New product" button', () => client.waitForAndClick(Catalog.add_new_button, 2000));
-    test('should set the "Name" input', () => client.waitForAndType(AddProduct.Basic_settings.name_input, productData.name + global.dateTime));
-    test('should set the "Reference" input', () => client.waitForAndType(AddProduct.Basic_settings.reference_input, productData.reference));
-    test('should set the "Quantity" input', () => client.waitForAndType(AddProduct.Basic_settings.quantity_input, productData.quantity, 2000));
-    test('should set the "Price" input', () => client.clearInputAndSetValue(AddProduct.Basic_settings.price_input, productData.priceHT));
-    test('should upload the product picture', () => client.uploadFile(AddProduct.Basic_settings.files_input, dataFileFolder, productData.picture));
-    test('should click on "Options" tab', () => client.waitForAndClick(AddProduct.options_tab, 2000));
+    test('should set the "Name" input', () => client.waitForAndType(AddProductPage.Basic_settings.name_input, productData.name + global.dateTime));
+    test('should set the "Reference" input', () => client.waitForAndType(AddProductPage.Basic_settings.reference_input, productData.reference));
+    test('should set the "Quantity" input', () => client.waitForAndType(AddProductPage.Basic_settings.quantity_input, productData.quantity, 2000));
+    test('should set the "Price" input', () => client.clearInputAndSetValue(AddProductPage.Basic_settings.price_input, productData.priceHT));
+    test('should upload the product picture', () => client.uploadFile(AddProductPage.Basic_settings.files_input, dataFileFolder, productData.picture));
+    test('should click on "Options" tab', () => client.waitForAndClick(AddProductPage.options_tab, 2000));
     test('should attach a new file', async () => {
-      await client.waitForAndClick(AddProduct.Options.attach_new_file_button);
-      await client.uploadFile(AddProduct.Options.attachment_file, dataFileFolder, productData.file, 1000);
+      await client.waitForAndClick(AddProductPage.Options.attach_new_file_button);
+      await client.uploadFile(AddProductPage.Options.attachment_file, dataFileFolder, productData.file, 1000);
     });
     test('should close the symfony toolbar', async () => {
       await page.waitFor(2000);
@@ -47,14 +47,14 @@ scenario('This scenario is based on the bugs described on this PR: https://githu
         await client.waitForAndClick(CommonBO.symfony_toolbar_close_button);
       }
     });
-    test('should click on "Online"', () => client.waitForAndClick(AddProduct.online_switcher, 3000));
-    test('should check and close the green validation', () => client.waitForAndClick(AddProduct.close_validation_button));
+    test('should click on "Online"', () => client.waitForAndClick(AddProductPage.online_switcher, 3000));
+    test('should check and close the green validation', () => client.waitForAndClick(AddProductPage.close_validation_button));
   }, 'common_client');
   scenario('Go to the Front Office and check that the created product is well displayed in the Front Office', client => {
-    test('should click on "Preview" button', () => client.waitForAndClick(AddProduct.preview_button));
+    test('should click on "Preview" button', () => client.waitForAndClick(AddProductPage.preview_button));
     test('should click on "Preview" link', async () => {
       await client.switchWindow(1);
-      await client.waitForAndClick(AddProduct.preview_link);
+      await client.waitForAndClick(AddProductPage.preview_link);
     });
     test('should check the existence of the button "', () => client.isExisting(ProductPageFO.add_to_cart_button, 1000));
   }, 'common_client');

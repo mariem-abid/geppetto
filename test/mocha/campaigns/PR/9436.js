@@ -9,8 +9,8 @@ scenario('PR-9436: Check the taxes of "Denmark" country', () => {
   authentication.signInBO('9436');
   scenario('Check the availability of taxes for Denmark', client => {
     test('should go to "Taxes" page', async () => {
-      await client.waitForAndClick(Menu.Improve.International.international_menu);
-      await client.waitForAndClick(Menu.Improve.International.taxes_submenu);
+      await client.waitForAndClick(Menu.Improve.International.international_menu_link);
+      await client.waitForAndClick(Menu.Improve.International.taxes_submenu_link);
     });
     test('should search for "Denmark" taxes by name', () => client.searchByValue(TaxesPage.filter_name_input, TaxesPage.filter_search_button, 'DK') );
     test('should check that only be one available tax for "Denmark"', () => client.checkTextValue(TaxesPage.tax_number_span, '1', 'equal', 2000) );

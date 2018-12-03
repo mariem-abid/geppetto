@@ -5,7 +5,7 @@ const {EmailPage} = require('../../selectors/BO/advancedParameters/emailPage');
 const {DbBackupPage} = require('../../selectors/BO/advancedParameters/databasePage');
 const {LogsPage} = require('../../selectors/BO/advancedParameters/logsPage');
 const {TraficAndSeo} = require('../../selectors/BO/shopParameters/trafficAndSeoPage');
-const {Localisation} = require('../../selectors/BO/improve/international/localizationPage');
+const {LocalizationPage} = require('../../selectors/BO/improve/international/localizationPage');
 const {CommonBO} = require('../../selectors/BO/commonBO');
 
 /** This scenario is based on the bug described in this PR
@@ -38,10 +38,10 @@ scenario('PR-11030: Check that the pages of controllers that were migrated with 
     test('should check that the "SEO & URLs" page is well opened', () => client.isExisting(TraficAndSeo.SeoAndUrlsPage.seo_urls_table, 4000));
 
     test('should go to "Localization" page', async () => {
-      await client.waitForAndClick(Menu.Improve.International.international_menu);
-      await client.waitForAndClick(Menu.Improve.International.localization_submenu, 2000);
+      await client.waitForAndClick(Menu.Improve.International.international_menu_link);
+      await client.waitForAndClick(Menu.Improve.International.localization_submenu_link, 2000);
     });
-    test('should check that the "Localization" page is well opened', () => client.isExisting(Localisation.LocalisationPage.impost_localization_pack_select, 4000));
+    test('should check that the "Localization" page is well opened', () => client.isExisting(LocalizationPage.Localization.impost_localization_pack_select, 4000));
 
     test('should click on "Geolocation" tab', () => client.waitForAndClick(Menu.Improve.International.geolocation_tab));
     test('should check that the "Geolocation" page is well opened', async () => {
@@ -49,7 +49,7 @@ scenario('PR-11030: Check that the pages of controllers that were migrated with 
       if (global.visible) {
         await client.waitForAndClick(CommonBO.symfony_toolbar_close_button);
       }
-      await client.isExisting(Localisation.GeolocationPage.geolocation_behavior_restricted_countries_select, 4000)
+      await client.isExisting(LocalizationPage.Geolocation.geolocation_behavior_restricted_countries_select, 4000)
     });
 
     test('should go to "Logs" page', async () => {

@@ -1,11 +1,11 @@
 module.exports = {
-  AddProduct: {
+  AddProductPage: {
     quantity_combination_tab: '#tab_step3 > a',
     options_tab: '#tab_step6 > a',
     success_message: '#growls-default div.growl-message',
     save_button: 'button.js-btn-save[type=submit]',
     online_switcher: '.switch-input',
-    symfony_toolbar: 'a[title="Close Toolbar"]',
+    close_symfony_toolbar: 'a[title="Close Toolbar"]', //@Todo
     close_validation_button: '.growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
     preview_button: '#product_form_preview_btn',

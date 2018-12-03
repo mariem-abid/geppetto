@@ -3,7 +3,7 @@ const product = require('../common_scenarios/catalog/product');
 const {CommonBO} = require('../../selectors/BO/commonBO');
 const {Menu} = require('../../selectors/BO/menu');
 const {Catalog} = require('../../selectors/BO/catalog/products/catalog');
-const {AddProduct} = require('../../selectors/BO/catalog/products/addProduct');
+const {AddProductPage} = require('../../selectors/BO/catalog/products/addProduct');
 
 let productData = {
   name: 'P10956',
@@ -34,25 +34,25 @@ scenario('PR-10956: Check the feature of the product in the Back Office', () => 
     test('should click on the "Name" of the resulted product', () => client.waitForAndClick(Catalog.searched_product_link));
 
     //First feature
-    test('should click on "Add a feature" button', () => client.waitForAndClick(AddProduct.Basic_settings.add_feature_button, 3000));
+    test('should click on "Add a feature" button', () => client.waitForAndClick(AddProductPage.Basic_settings.add_feature_button, 3000));
     test('should choose "Color" feature from the dropdown list', async () => {
-      await client.waitForAndClick(AddProduct.Basic_settings.feature_select_button.replace('%ID', 0), 2000);
-      await client.waitForAndClick(AddProduct.Basic_settings.feature_select_option.replace('%ID', 0).replace('%OPTION', 4), 2000);
+      await client.waitForAndClick(AddProductPage.Basic_settings.feature_select_button.replace('%ID', 0), 2000);
+      await client.waitForAndClick(AddProductPage.Basic_settings.feature_select_option.replace('%ID', 0).replace('%OPTION', 4), 2000);
     });
-    test('should choose the "White" pre-defined value from the dropdown list', () => client.waitForAndSelect(AddProduct.Basic_settings.predefined_value_select.replace('%ID', 0), '9', 2000));
+    test('should choose the "White" pre-defined value from the dropdown list', () => client.waitForAndSelect(AddProductPage.Basic_settings.predefined_value_select.replace('%ID', 0), '9', 2000));
 
     //Second feature
-    test('should click on "Add a feature" button', () => client.waitForAndClick(AddProduct.Basic_settings.add_feature_button, 3000));
+    test('should click on "Add a feature" button', () => client.waitForAndClick(AddProductPage.Basic_settings.add_feature_button, 3000));
     test('should choose "Color" feature from the dropdown list', async () => {
-      await client.waitForAndClick(AddProduct.Basic_settings.feature_select_button.replace('%ID', 1), 2000);
-      await client.waitForAndClick(AddProduct.Basic_settings.feature_select_option.replace('%ID', 1).replace('%OPTION', 4), 2000);
+      await client.waitForAndClick(AddProductPage.Basic_settings.feature_select_button.replace('%ID', 1), 2000);
+      await client.waitForAndClick(AddProductPage.Basic_settings.feature_select_option.replace('%ID', 1).replace('%OPTION', 4), 2000);
     });
-    test('should choose the "White" pre-defined value from the dropdown list', () => client.waitForAndSelect(AddProduct.Basic_settings.predefined_value_select.replace('%ID', 1), '9', 2000));
+    test('should choose the "White" pre-defined value from the dropdown list', () => client.waitForAndSelect(AddProductPage.Basic_settings.predefined_value_select.replace('%ID', 1), '9', 2000));
     scenario('Save the product then close the green validation', client => {
-      test('should click on "Save" button', () => client.waitForAndClick(AddProduct.save_button));
+      test('should click on "Save" button', () => client.waitForAndClick(AddProductPage.save_button));
       test('should check and close the green validation', async() => {
-        await client.checkTextValue(AddProduct.validation_msg, 'Settings updated.');
-        await client.waitForAndClick(AddProduct.close_validation_button);
+        await client.checkTextValue(AddProductPage.validation_msg, 'Settings updated.');
+        await client.waitForAndClick(AddProductPage.close_validation_button);
       });
     }, 'common_client');
     scenario('Go to the product list then click on "Reset" button', client => {
