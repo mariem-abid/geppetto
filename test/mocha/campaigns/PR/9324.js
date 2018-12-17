@@ -20,7 +20,7 @@ scenario('PR-9324: Check the SQL query action after adding a filter in logs page
     test('should click on "Logs action" button', () => client.waitForAndClick(LogsPage.logs_action_button, 2000));
     test('should click on "Show SQL query" action button', () => client.waitForAndClick(LogsPage.show_sql_query_action, 2000));
     test('should check that the modal is well displayed', () => client.waitFor(LogsPage.show_query_modal, {timeout: 4000, visible: true}));
-    test('should check that the value of SQL query is well displayed', () => client.checkTextareaValue(LogsPage.sql_query_textarea, 'SELECT l.*, e.email, CONCAT(e.firstname, \' \', e.lastname) as employee FROM ps_log l INNER JOIN ps_employee e ON l.id_employee = e.id_employee WHERE id_log LIKE \'%2%\' ORDER BY id_log desc LIMIT 10 OFFSET 0', 'equal', 3000));
+    test('should check that the value of SQL query is well displayed', () => client.checkTextElementValue(LogsPage.sql_query_textarea, 'SELECT l.*, e.email, CONCAT(e.firstname, \' \', e.lastname) as employee FROM ps_log l INNER JOIN ps_employee e ON l.id_employee = e.id_employee WHERE id_log LIKE \'%2%\' ORDER BY id_log desc LIMIT 10 OFFSET 0', 'equal', 3000));
   }, 'common_client');
   authentication.signOutBO();
 }, 'common_client', true);

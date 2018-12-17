@@ -27,9 +27,9 @@ module.exports = {
         movement_tab: '#head_tabs li:nth-child(2) a'
       },
       Customers: {
-        customers_menu: '#subtab-AdminParentCustomer',
-        customers_submenu: '#subtab-AdminCustomers',
-        addresses_submenu: '#subtab-AdminAddresses'
+        customers_menu_link: '#subtab-AdminParentCustomer a', //@Todo
+        customers_submenu_link: '#subtab-AdminCustomers a', //@Todo
+        addresses_submenu_link: '#subtab-AdminAddresses a',//@Todo
       },
       CustomerService: {
         customer_service_menu: '#subtab-AdminParentCustomerThreads',

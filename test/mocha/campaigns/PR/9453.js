@@ -2,8 +2,8 @@ const authentication = require('../common_scenarios/authentication');
 const {Menu} = require('../../selectors/BO/menu');
 const {Catalog} = require('../../selectors/BO/catalog/products/catalog');
 const {Categories} = require('../../selectors/BO/catalog/categories/categories');
-const {Customers} = require('../../selectors/BO/customers/customers/customers');
-const {Addresses} = require('../../selectors/BO/customers/addresses/addresses');
+const {CustomersPage} = require('../../selectors/BO/customers/customers/customersPage');
+const {AddressesPage} = require('../../selectors/BO/customers/addresses/addresses');
 const {Brands} = require('../../selectors/BO/catalog/brandsAndSuppliers/brands/brands');
 const {Suppliers} = require('../../selectors/BO/catalog/brandsAndSuppliers/suppliers/suppliers');
 const {ImportPage} = require('../../selectors/BO/advancedParameters/importPage');
@@ -37,19 +37,19 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the customers', client=> {
     test('should go to "Customers" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Customers.customers_menu, 2000);
-      await client.waitForAndClick(Menu.Sell.Customers.customers_submenu, 2000);
+      await client.waitForAndClick(Menu.Sell.Customers.customers_menu_link, 2000);
+      await client.waitForAndClick(Menu.Sell.Customers.customers_submenu_link, 2000);
     });
-    test('should click on "Import" button', () => client.waitForAndClick(Customers.import_button));
+    test('should click on "Import" button', () => client.waitForAndClick(CustomersPage.import_button));
     test('should check that the "Import" page is well opened', () => client.waitFor(ImportPage.entity_select));
     test('should check that the "Customers" entity is well selected', () => client.checkSelectedValue(ImportPage.entity_select, 'Customers'));
   }, 'common_client');
   scenario('Check the preselected entity for the addresses', client=> {
     test('should go to "Addresses" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Customers.customers_menu, 2000);
-      await client.waitForAndClick(Menu.Sell.Customers.addresses_submenu, 2000);
+      await client.waitForAndClick(Menu.Sell.Customers.customers_menu_link, 2000);
+      await client.waitForAndClick(Menu.Sell.Customers.addresses_submenu_link, 2000);
     });
-    test('should click on "Import" button', () => client.waitForAndClick(Addresses.import_button));
+    test('should click on "Import" button', () => client.waitForAndClick(AddressesPage.import_button));
     test('should check that the "Import" page is well opened', () => client.waitFor(ImportPage.entity_select));
     test('should check that the "Addresses" entity is well selected', () => client.checkSelectedValue(ImportPage.entity_select, 'Addresses'));
   }, 'common_client');
