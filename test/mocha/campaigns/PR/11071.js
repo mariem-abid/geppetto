@@ -9,7 +9,7 @@ scenario('PR-11071: Check that the checkbox successfully works at the first clic
   authentication.signInBO('11071');
   scenario('Check that the checkbox successfully works in the product page', client => {
     test('should go to "Products" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 4000);
     });
     test('should filter the products by category "Home"', async () => {

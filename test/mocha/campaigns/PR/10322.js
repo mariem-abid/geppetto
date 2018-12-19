@@ -11,7 +11,7 @@ scenario('PR-10322: Check the sort of product with drag and drop', () => {
   authentication.signInBO('10322');
   scenario('Change the position of products with drag and drop', client => {
     test('should go to "Products" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 4000);
     });
     test('should filter the products by category "Home"', async () => {

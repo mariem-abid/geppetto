@@ -15,7 +15,7 @@ scenario('This scenario is based on the bug described in this PR: https://github
   authentication.signInBO('9466');
   scenario('Create a new product in the Back Office', client => {
     test('should go to "Catalog" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
     });
     test('should click on "New product"', () => client.waitForAndClick(Catalog.add_new_button));

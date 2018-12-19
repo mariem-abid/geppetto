@@ -4,7 +4,7 @@ const {Catalog} = require('../../selectors/BO/catalog/products/catalog');
 const {Categories} = require('../../selectors/BO/catalog/categories/categories');
 const {Customers} = require('../../selectors/BO/customers/customers/customers');
 const {Addresses} = require('../../selectors/BO/customers/addresses/addresses');
-const {Brands} = require('../../selectors/BO/catalog/brandsAndSuppliers/brands/brands');
+const {BrandsPage} = require('../../selectors/BO/catalog/brandsAndSuppliers/brands/brands');
 const {Suppliers} = require('../../selectors/BO/catalog/brandsAndSuppliers/suppliers/suppliers');
 const {ImportPage} = require('../../selectors/BO/advancedParameters/importPage');
 const {Search} = require('../../selectors/BO/shopParameters/search');
@@ -16,7 +16,7 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   authentication.signInBO('9453');
   scenario('Check the preselected entity for the products', client=> {
     test('should go to "Products" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 2000);
     });
     test('should click on "Import" button', async () => {
@@ -28,7 +28,7 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the categories', client=> {
     test('should go to "Categories" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
       await client.waitForAndClick(Menu.Sell.Catalog.category_submenu, 2000);
     });
     test('should click on "Import" button', () => client.waitForAndClick(Categories.import_button));
@@ -55,17 +55,17 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the brands', client=> {
     test('should go to "Brands" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
-      await client.waitForAndClick(Menu.Sell.Catalog.manufacturers_submenu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.brands_suppliers_submenu_link, 2000);
     });
-    test('should click on "Import" button', () => client.waitForAndClick(Brands.import_button));
+    test('should click on "Import" button', () => client.waitForAndClick(BrandsPage.import_button));
     test('should check that the "Import" page is well opened', () => client.waitFor(ImportPage.entity_select));
     test('should check that the "Brands" entity is well selected', () => client.checkSelectedValue(ImportPage.entity_select, 'Brands'));
   }, 'common_client');
   scenario('Check the preselected entity for the suppliers', client=> {
     test('should go to "Suppliers" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
-      await client.waitForAndClick(Menu.Sell.Catalog.manufacturers_submenu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.brands_suppliers_submenu_link, 2000);
     });
     test('should click on "Suppliers" tab', () => client.waitForAndClick(Menu.Sell.Catalog.supplier_tab, 2000));
     test('should click on "Import" button', () => client.waitForAndClick(Suppliers.import_button));

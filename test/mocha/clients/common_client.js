@@ -336,7 +336,7 @@ class CommonClient {
     await this.waitFor(wait);
     await this.waitFor(selector);
     await page.$eval(selector, el => el.innerText).then((text) => {
-      global.tab[globalVar] = text;
+      global.tab[globalVar] = text.trim();
     });
   }
 
@@ -359,6 +359,42 @@ class CommonClient {
         await this.waitFor(selector);
         await page.$eval(selector, el => el.value).then((text) => expect(text).to.contain(textToCheckWith));
         break;
+    }
+  }
+
+  async isOpen(selector, attribute, textToCheckWith, wait = 0) {
+    await this.waitFor(wait);
+    await this.waitFor(selector);
+    await page.$eval(selector, (el, attribute) => {
+      const parentElement = el.parentElement;
+      return parentElement.getAttribute(attribute);
+    }, attribute).then((value) => {
+      global.isOpen = value.indexOf('open') !== -1;
+    });
+  }
+
+  async goToSubtabMenuPage(menuSelector, selector, wait = 0) {
+    await this.isOpen(menuSelector, 'class', 'open', wait);
+    if (global.isOpen) {
+      await this.waitForAndClick(selector, wait);
+    }
+    else {
+      await this.waitForAndClick(menuSelector, wait);
+      await this.waitForAndClick(selector, wait);
+    }
+  }
+
+  async setTextEditor(selector, content,wait=0) {
+    await this.waitForAndClick(selector, wait);
+    await page.evaluate((content) => {
+      return tinyMCE.activeEditor.setContent(content)
+    },content);
+  }
+
+  async search(selector, value, search_button, wait = 0) {
+    if (global.visible) {
+      await this.clearInputAndSetValue(selector, value, wait);
+      await this.keyboardPress('Enter');
     }
   }
 }
