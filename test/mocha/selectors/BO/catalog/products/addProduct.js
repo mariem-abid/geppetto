@@ -47,6 +47,21 @@ module.exports = {
       customization_input: '#form_step6_custom_fields_0_label_1',
       attach_new_file_button: '#step6 a.mb-3',
       attachment_file: '#form_step6_attachment_product_file'
+    },
+    Pricing: {
+      product_pricing_tab: '#tab_step2 > a',
+      products_delete_edit_specific_price_link: '#js-specific-price-list tr:nth-of-type(%ROW) td:nth-of-type(%COL) a',
+      continue_confirmation: '#confirmation_modal button:nth-of-type(2)',
+      unit_price: '#form_step2_unit_price',
+      unity: '#form_step2_unity',
+      pricing_wholesale: '#form_step2_wholesale_price',
+      pricing_add_specific_price_button: '#specific-price > a',
+      specific_price_reduction_type_select: '#form_step2_specific_price_sp_reduction_type',
+      specific_price_discount_input: '#form_step2_specific_price_sp_reduction',
+      specific_price_save_button: '#form_step2_specific_price_save'
     }
+  },
+  ProductList: {
+    products_edit_link: '#product_catalog_list tr:nth-of-type(%ROW) td:nth-of-type(11) a:nth-of-type(1)',
   }
 };

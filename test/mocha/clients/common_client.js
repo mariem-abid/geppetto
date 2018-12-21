@@ -79,9 +79,9 @@ class CommonClient {
   }
 
   async signOutBO() {
-    await this.waitForAndClick(CommonBO.employee_infos_icon, 2000);
-    await this.waitForAndClick(CommonBO.logout_button, 2000);
-  }
+      await this.waitForAndClick(CommonBO.employee_infos_icon, 2000, {visibile: true});
+      await this.waitForAndClick(CommonBO.logout_button, 2000);
+    }
 
   async signInFO() {
     await this.waitForAndClick(HomePage.sign_in_button, 1000, {visible: true});
@@ -190,10 +190,10 @@ class CommonClient {
   async switchShopLanguageInFo(language = 'fr') {
     await this.waitForAndClick(HomePage.language_selector);
     await this.waitFor(1000);
-    if (language === 'en') {
-      await this.waitForAndClick(HomePage.language_EN);
-    } else {
-      await this.waitForAndClick(HomePage.language_FR);
+    await this.isVisible(HomePage.language_option.replace('%LANG', language));
+    expect(global.visible, "This language is not existing").to.be.true;
+    if (global.visible) {
+      await this.waitForAndClick(HomePage.language_option.replace('%LANG', language));
     }
   }
 
@@ -361,6 +361,52 @@ class CommonClient {
         break;
     }
   }
+
+  async isOpen(selector, attribute, textToCheckWith, wait = 0) {
+    await this.waitFor(wait);
+    await this.waitFor(selector);
+    await page.$eval(selector, (el, attribute) => {
+      const parentElement = el.parentElement;
+      return parentElement.getAttribute(attribute);
+    }, attribute).then((value) => {
+      global.isOpen = value.indexOf('open') !== -1;
+    });
+  }
+
+  async goToSubtabMenuPage(menuSelector, selector, wait = 0) {
+    await this.isOpen(menuSelector, 'class', 'open', wait);
+    if (global.isOpen) {
+      await this.waitForAndClick(selector, wait);
+    }
+    else {
+      await this.waitForAndClick(menuSelector, wait);
+      await this.waitForAndClick(selector, wait);
+    }
+  }
+
+  async getAttributeInVar(selector, value, globalVar, wait = 0) {
+    await this.waitFor(wait);
+    await this.waitFor(selector);
+    await page.$eval(selector, el => el.value).then((variable) => global.tab[globalVar] = variable);
+  }
+
+  async editObjectData(object, type = '') {
+    for (let key in object) {
+      if (object.hasOwnProperty(key) && key !== 'type') {
+        if (typeof object[key] === 'string') {
+          parseInt(object[key]) ? object[key] = (parseInt(object[key]) + 10).toString() : object[key] += 'update';
+        } else if (typeof object[key] === 'number') {
+          object[key] += 10;
+        } else if (typeof object[key] === 'object') {
+          this.editObjectData(object[key]);
+        }
+      }
+      if (type !== '') {
+        object['type'] = type;
+      }
+    }
+  }
 }
+
 
 module.exports = CommonClient;

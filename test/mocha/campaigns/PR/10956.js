@@ -26,7 +26,7 @@ scenario('PR-10956: Check the feature of the product in the Back Office', () => 
   product.createProduct(productData);
   scenario('Edit the created product then check feature', client => {
     test('should go to "Catalog" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
     });
     test('should search for the created product by "Name"', () => client.waitForAndType(Catalog.filter_input.replace('%NAME', 'name'), productData.name + global.dateTime));

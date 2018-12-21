@@ -11,8 +11,8 @@ module.exports = {
         shopping_carts_submenu: '#subtab-AdminCarts'
       },
       Catalog: {
-        catalog_menu: '#subtab-AdminCatalog',
-        products_submenu: '#subtab-AdminProducts',
+        catalog_menu_link: '#subtab-AdminCatalog a',//@Todo
+        products_submenu_link: '#subtab-AdminProducts a',//@Todo
         category_submenu: '#subtab-AdminCategories',
         monitoring_submenu: '#subtab-AdminTracking',
         attributes_features_submenu: '#subtab-AdminParentAttributesGroups',
@@ -20,7 +20,7 @@ module.exports = {
         manufacturers_submenu: '#subtab-AdminParentManufacturers',
         supplier_tab: '#subtab-AdminSuppliers',
         files_submenu: '#subtab-AdminAttachments',
-        discounts_submenu: '#subtab-AdminParentCartRules',
+        discounts_submenu_link: '#subtab-AdminParentCartRules a',//@Todo
         catalog_price_rules_tab: '#subtab-AdminSpecificPriceRule',
         stocks_submenu: '#subtab-AdminStockManagement',
         stock_tab: '#head_tabs li:nth-child(1) a',

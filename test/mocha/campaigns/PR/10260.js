@@ -9,7 +9,7 @@ scenario('PR-10260: Check the "Help" button in the stock page', () => {
   authentication.signInBO('10260');
   scenario('Check that the "Help" button successfully work', client => {
     test('should go to "Stock" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.stocks_submenu);
     });
     test('should click on "Help" button', () => client.waitForAndClick(StockPage.help_button));

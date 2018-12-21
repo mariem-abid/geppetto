@@ -26,7 +26,7 @@ scenario('This scenario is based on the bugs described on this PR: https://githu
   authentication.signInBO('9429');
   scenario('Create a new product in the Back Office with an attached file', client => {
     test('should go to "Catalog" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
     });
     test('should click on "New product" button', () => client.waitForAndClick(Catalog.add_new_button, 2000));
