@@ -26,8 +26,8 @@ scenario('PR-10956: Check the feature of the product in the Back Office', () => 
   product.createProduct(productData);
   scenario('Edit the created product then check feature', client => {
     test('should go to "Catalog" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
-      await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
+      await client.waitForAndClick(Menu.Sell.Catalog.products_submenu_link, 1000);
     });
     test('should search for the created product by "Name"', () => client.waitForAndType(Catalog.filter_input.replace('%NAME', 'name'), productData.name + global.dateTime));
     test('should click on "Search" button', () => client.waitForAndClick(Catalog.submit_filter_button));
@@ -56,7 +56,7 @@ scenario('PR-10956: Check the feature of the product in the Back Office', () => 
       });
     }, 'common_client');
     scenario('Go to the product list then click on "Reset" button', client => {
-      test('should go to "Catalog" page', () => client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000));
+      test('should go to "Catalog" page', () => client.waitForAndClick(Menu.Sell.Catalog.products_submenu_link, 1000));
       test('should click on "Reset" button', () => client.waitForAndClick(Catalog.reset_filter_button, 2000, {visible: true}));
     }, 'common_client');
   }, 'common_client');

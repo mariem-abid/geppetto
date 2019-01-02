@@ -6,7 +6,7 @@ module.exports = {
     save_button: 'button.js-btn-save[type=submit]',
     online_switcher: '.switch-input',
     symfony_toolbar: 'a[title="Close Toolbar"]',
-    close_validation_button: '.growl-close',
+    close_validation_button: '#growls-default .growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
     preview_button: '#product_form_preview_btn',
     preview_link: 'body > a',
@@ -47,6 +47,14 @@ module.exports = {
       customization_input: '#form_step6_custom_fields_0_label_1',
       attach_new_file_button: '#step6 a.mb-3',
       attachment_file: '#form_step6_attachment_product_file'
+    },
+
+    Feature: {
+      add_feature_to_product_button: '#add_feature_button',
+      feature_select: '#features-content > div > div > div:nth-of-type(1) > fieldset > span > span:nth-of-type(1) > span',
+      select_feature_created: 'body input.select2-search__field',
+      result_feature_select: '#select2-form_step1_features_%ID_feature-results > li',
+      feature_value_select: '#form_step1_features_0_value',
     }
   }
 };

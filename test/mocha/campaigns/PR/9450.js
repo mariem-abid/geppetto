@@ -22,7 +22,7 @@ scenario('PR-9450: Check the admin base URL in multistore', () => {
     test('should get the base url of the default shop', () => client.getBaseUrl('defaultShopUrl'));
     test('should choose the second shop from the list', () => client.switchShop('Second shop'));
     test('should go to "Category" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link);
       await client.waitForAndClick(Menu.Sell.Catalog.category_submenu);
       await client.getBaseUrl('secondShopUrl');
     });

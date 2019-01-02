@@ -16,8 +16,8 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   authentication.signInBO('9453');
   scenario('Check the preselected entity for the products', client=> {
     test('should go to "Products" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
-      await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.products_submenu_link, 2000);
     });
     test('should click on "Import" button', async () => {
       await client.waitForAndClick(Catalog.tools_button);
@@ -28,7 +28,7 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the categories', client=> {
     test('should go to "Categories" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
       await client.waitForAndClick(Menu.Sell.Catalog.category_submenu, 2000);
     });
     test('should click on "Import" button', () => client.waitForAndClick(Categories.import_button));
@@ -55,7 +55,7 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the brands', client=> {
     test('should go to "Brands" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
       await client.waitForAndClick(Menu.Sell.Catalog.manufacturers_submenu, 2000);
     });
     test('should click on "Import" button', () => client.waitForAndClick(Brands.import_button));
@@ -64,7 +64,7 @@ scenario('PR-9453: Check the pre-selected entity in the import page', () => {
   }, 'common_client');
   scenario('Check the preselected entity for the suppliers', client=> {
     test('should go to "Suppliers" page', async () => {
-      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu, 2000);
+      await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu_link, 2000);
       await client.waitForAndClick(Menu.Sell.Catalog.manufacturers_submenu, 2000);
     });
     test('should click on "Suppliers" tab', () => client.waitForAndClick(Menu.Sell.Catalog.supplier_tab, 2000));

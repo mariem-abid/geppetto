@@ -12,5 +12,8 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    feature_name: '#product-details > section > dl > dt.name',
+    feature_value: '#product-details > section > dl > dd',
+
   }
 };
