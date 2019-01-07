@@ -6,7 +6,7 @@ module.exports = {
     save_button: 'button.js-btn-save[type=submit]',
     online_switcher: '.switch-input',
     symfony_toolbar: 'a[title="Close Toolbar"]',
-    close_validation_button: '.growl-close',
+    close_validation_button: '#growls-default > div > div.growl-close',
     validation_msg: '#growls-default > .growl-notice > .growl-message:not(:empty)',
     preview_button: '#product_form_preview_btn',
     preview_link: 'body > a',
@@ -34,7 +34,14 @@ module.exports = {
       combination_tr: '#accordion_combinations > tr:nth-child(%POS)',
       edit_combination_icon: '#attribute_%ID > td.attribute-actions a',
       combination_image: '#combination_%ID_id_image_attr > div:nth-child(%POS) > img',
-      combination_image_number: '#combination_form_%ID small.number-of-images'
+      combination_image_number: '#combination_form_%ID small.number-of-images',
+      variations_select: '#attributes-generator > div:nth-of-type(2) > div:nth-of-type(1) > fieldset > div > span > div > div > div',
+      var_selected: '#toggle-all-combinations',
+      combination_panel: '#accordion_combinations > tr:nth-of-type(%NUMBER)',
+      var_selected_quantitie: '#product_combination_bulk_quantity',
+      save_quantitie_button: '#apply-on-combinations',
+
+
     },
 
     Quantity: {

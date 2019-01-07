@@ -12,5 +12,7 @@ module.exports = {
     first_product: '#content article:nth-child(1) div.product-description a',
     quantity_wanted_input: '#quantity_wanted',
     product_availability: '#product-availability',
+    attribute_name: '#add-to-cart-or-refresh > div.product-variants > div > span',
+    attribute_radio_values: '#add-to-cart-or-refresh > div.product-variants li span[class*=radio-label]'
   }
 };

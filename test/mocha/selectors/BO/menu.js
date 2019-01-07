@@ -11,11 +11,11 @@ module.exports = {
         shopping_carts_submenu: '#subtab-AdminCarts'
       },
       Catalog: {
-        catalog_menu: '#subtab-AdminCatalog',
+        catalog_menu_link: '#subtab-AdminCatalog a',//@Todo
         products_submenu: '#subtab-AdminProducts',
         category_submenu: '#subtab-AdminCategories',
         monitoring_submenu: '#subtab-AdminTracking',
-        attributes_features_submenu: '#subtab-AdminParentAttributesGroups',
+        attributes_features_submenu_link: '#subtab-AdminParentAttributesGroups a',//@Todo
         feature_tab: '#subtab-AdminFeatures',
         manufacturers_submenu: '#subtab-AdminParentManufacturers',
         supplier_tab: '#subtab-AdminSuppliers',

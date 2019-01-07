@@ -30,17 +30,14 @@ module.exports = {
    */
   async createProduct(productData) {
     scenario('Create a new product in the Back Office', client => {
-      test('should go to "Catalog" page', async () => {
-        await client.waitForAndClick(Menu.Sell.Catalog.catalog_menu);
-        await client.waitForAndClick(Menu.Sell.Catalog.products_submenu, 1000);
-      });
+      test('should go to "Catalog" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu_link, Menu.Sell.Catalog.products_submenu, 1000));
       test('should click on "New product" button', () => client.waitForAndClick(Catalog.add_new_button, 2000));
       test('should set the "Name" input', () => client.waitForAndType(AddProduct.Basic_settings.name_input, productData.name + global.dateTime));
       test('should set the "Reference" input', () => client.waitForAndType(AddProduct.Basic_settings.reference_input, productData.reference));
       test('should set the "Quantity" input', () => client.waitForAndType(AddProduct.Basic_settings.quantity_input, productData.quantity, 2000));
       test('should set the "Price" input', () => client.clearInputAndSetValue(AddProduct.Basic_settings.price_input, productData.priceHT));
       for (let i = 0; i < productData.pictures.length; i++) {
-        test('should upload the ' + client.stringifyNumber(i+1) + ' product picture', () => client.uploadFile(AddProduct.Basic_settings.files_input, dataFileFolder, productData.pictures[i]));
+        test('should upload the ' + client.stringifyNumber(i + 1) + ' product picture', () => client.uploadFile(AddProduct.Basic_settings.files_input, dataFileFolder, productData.pictures[i]));
       }
       test('should close the symfony toolbar', async () => {
         await page.waitFor(2000);
@@ -50,7 +47,7 @@ module.exports = {
         }
       });
       test('should click on "Online"', () => client.waitForAndClick(AddProduct.online_switcher, 3000));
-      test('should check and close the green validation', () => client.waitForAndClick(AddProduct.close_validation_button));
+      test('should check and close the green validation', () => client.waitForAndClick(AddProduct.close_validation_button,3000));
 
       if (productData.type === 'standard') {
         test('should click on "Simple product" radio button', () => client.waitForAndClick(AddProduct.Basic_settings.simple_product_radio_button, 2000));
@@ -65,20 +62,61 @@ module.exports = {
             await client.waitForAndClick(AddProduct.Combination.attribute_size_checkbox_button.replace('%ID', 2), 1000); // combination size m
           });
           test('should click on "Generate" button', () => client.waitForAndClick(AddProduct.Combination.generate_combination_button, 3000));
-          test('should verify the appearance of the green validation', async() => {
+          test('should verify the appearance of the green validation', async () => {
             await client.checkTextValue(AddProduct.validation_msg, 'Settings updated.');
-            await client.waitForAndClick(AddProduct.close_validation_button);
+            await client.waitForAndClick(AddProduct.close_validation_button,3000);
           });
-          test('should check the appearance of combinations', () => client.waitFor(AddProduct.Combination.combination_tr.replace('%POS', 1), {visible: true, timeout: 10000}));
+          test('should check the appearance of combinations', () => client.waitFor(AddProduct.Combination.combination_tr.replace('%POS', 1), {
+            visible: true,
+            timeout: 10000
+          }));
           if (productData.hasOwnProperty('combinationsQuantities')) {
             scenario('Add quantities to combinations', client => {
-              test('should add quantities to combinations', async() => {
+              test('should add quantities to combinations', async () => {
                 await client.clearInputAndSetValue(AddProduct.Combination.attribute_quantity_input.replace("%NUMBER", 1), productData.combinationsQuantities.firstQuantity, 4000);
                 await client.clearInputAndSetValue(AddProduct.Combination.attribute_quantity_input.replace("%NUMBER", 2), productData.combinationsQuantities.secondQuantity, 2000);
               });
             }, 'common_client');
           }
         }, 'common_client');
+      }
+
+      if (productData.hasOwnProperty('attribute')) {
+        scenario('Add Attribute', client => {
+          test('should select the "Product with combination" radio button', () => client.waitForAndClick(AddProduct.Basic_settings.combination_radio_button));
+          test('should go to "Combinations" tab', () => client.waitForAndClick(AddProduct.quantity_combination_tab));
+          test('should select the variation', async () => {
+            if (Object.keys(productData.attribute).length === 1) {
+              await client.clearInputAndSetValue(AddProduct.Combination.attributes_input, productData.attribute[1].name + global.dateTime + " : All");
+              await client.waitForAndClick(AddProduct.Combination.variations_select);
+            }
+          });
+          test('should click on "Generate" button', () => client.waitForAndClick(AddProduct.Combination.generate_combination_button, 3000));
+          test('should verify the appearance of the green validation', () => client.checkTextValue(AddProduct.validation_msg, 'Settings updated.'));
+
+          /**
+           * Should refresh the page because of the issue here
+           * https://github.com/PrestaShop/PrestaShop/issues/9826
+           **/
+
+          test('should refresh the page if "Debug" mode is active because of the issue here  "#9826" ', async () => {
+            await client.isVisible(AddProduct.Combination.var_selected);
+            if (global.ps_mode_dev && !visible) {
+              await client.reload();
+            } else {
+              await client.waitFor(0);
+            }
+            await client.getCombinationData(1, 'data', 5000);
+          });
+          test('should select all the generated variations', () => client.waitForAndClick(AddProduct.Combination.var_selected, 2000));
+          test('should set the "Variations quantity" input', async () => {
+            await client.waitFor(4000);
+            await client.setVariationsQuantity(productData.attribute[1].variation_quantity);
+            if (global.ps_mode_dev) {
+              await client.waitForAndClick(AddProduct.symfony_toolbar);
+            }
+          });
+        }, 'catalog/create_combinations');
       }
 
       if (productData.hasOwnProperty('options')) {
@@ -99,7 +137,7 @@ module.exports = {
           if (productData.quantities.hasOwnProperty('availability') && productData.quantities.availability === 'default') {
             test('should check "Default behaviour" radio button', () => client.waitForAndClick(AddProduct.Quantity.default_behaviour_radio_button));
           }
-          if(productData.quantities.hasOwnProperty('minimal_quantity')) {
+          if (productData.quantities.hasOwnProperty('minimal_quantity')) {
             test('should set the "Minimum quantity for sale" input', () => client.waitForAndSetValue(AddProduct.Quantity.minimal_quantity_input, productData.quantities.minimal_quantity, 2000));
           }
         }, 'catalog/product');
@@ -107,9 +145,9 @@ module.exports = {
 
       scenario('Save the product then close the green validation', client => {
         test('should click on "Save" button', () => client.waitForAndClick(AddProduct.save_button, 10000));
-        test('should check and close the green validation', async() => {
+        test('should check and close the green validation', async () => {
           await client.checkTextValue(AddProduct.validation_msg, 'Settings updated.');
-          await client.waitForAndClick(AddProduct.close_validation_button);
+          await client.waitForAndClick(AddProduct.close_validation_button,3000);
         });
       }, 'common_client');
     }, 'common_client');
@@ -118,7 +156,7 @@ module.exports = {
     scenario('Go to the front office and search for the created product', client => {
       test('should go to the Front Office', () => client.accessToFO(CommonBO.shopname_link, 1, 6000));
       test('should go switch language to "English"', () => client.switchShopLanguageInFo('en'));
-      test('should search for the created product', async() => {
+      test('should search for the created product', async () => {
         await client.waitForAndClick(HomePage.search_input, 2000);
         await client.waitForAndType(HomePage.search_input, productData.name + global.dateTime, 2000);
         await client.waitForAndClick(HomePage.search_button, 2000);
@@ -142,4 +180,5 @@ module.exports = {
       });
     }, 'common_client');
   }
-};
+}
+;
